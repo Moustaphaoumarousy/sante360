@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santé+360 - Profil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation (same as dashboard) -->
+        <nav class="sidebar">
+            <!-- ... same sidebar content as dashboard ... -->
+            <div class="sidebar-header">
+                <h2>Santé+360</h2>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de Bord</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="profil.html">
+                        <i class="fas fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="chatbot.html">
+                        <i class="fas fa-robot"></i>
+                        <span>Chatbot</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="symptomes.html">
+                        <i class="fas fa-notes-medical"></i>
+                        <span>Symptômes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="urgence.html">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Urgence</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="carte.html">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Carte</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Profil</h1>
+                <div class="user-profile">
+                    <img src="assets/user.png" alt="Profile" class="profile-pic">
+                    <span>Alpha THIAM</span>
+                </div>
+            </header>
+
+            <div class="profile-container">
+                <div class="card profile-card">
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="assets/user.png" alt="Profile" class="profile-pic-xlarge">
+                            <button class="change-photo-btn">
+                                <i class="fas fa-camera"></i> Changer
+                            </button>
+                        </div>
+                        <div class="profile-title">
+                            <h2>Alpha THIAM</h2>
+                            <p>Membre depuis Juin 2023</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-body">
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Nom complet</label>
+                                    <input type="text" id="fullName" value="Alpha THIAM">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" value="alphathiam@gmail.com">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="age">Âge</label>
+                                    <input type="number" id="age" value="45">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bloodType">Groupe sanguin</label>
+                                    <select id="bloodType">
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+" selected>B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Adresse</label>
+                                <input type="text" id="address" value="Immeuble 46, Cité Keur Gorgui, Dakar, Sénégal">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card emergency-contacts">
+                    <div class="card-header">
+                            <h3>Contacts d'urgence</h3>
+                            <button id="addContactBtn" class="btn btn-small">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <h4>Dr. FAYE</h4>
+                                    <p>Diabétologue</p>
+                                    <p><i class="fas fa-phone"></i> +221 77 123 45 67</p>
+                                </div>
+                                <div class="contact-actions">
+                                    <button class="btn-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Additional contacts would be here -->
+                             <div id="contactForm" class="contact-form" style="display: none;">
+            <div class="form-group">
+                <label for="contactName">Nom</label>
+                <input type="text" id="contactName" placeholder="Nom complet">
+            </div>
+            <div class="form-group">
+                <label for="contactRelation">Relation</label>
+                <input type="text" id="contactRelation" placeholder="Médecin, Famille...">
+            </div>
+            <div class="form-group">
+                <label for="contactPhone">Téléphone</label>
+                <input type="tel" id="contactPhone" placeholder="+221 77 123 45 67">
+            </div>
+            <div class="form-actions">
+                <button type="button" id="cancelContactBtn" class="btn btn-secondary">Annuler</button>
+                <button type="button" id="saveContactBtn" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
