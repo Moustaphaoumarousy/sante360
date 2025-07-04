@@ -1,0 +1,217 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santé+360 - Tableau de Bord</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Santé+360</h2>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a href="{% url 'dashboard' %}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de Bord</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'profil' %}">
+                        <i class="fas fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'chatbot' %}">
+                        <i class="fas fa-robot"></i>
+                        <span>Chatbot</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'symptomes' %}">
+                        <i class="fas fa-notes-medical"></i>
+                        <span>Symptômes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'urgences' %}">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Urgence</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'carte' %}">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Carte</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Tableau de Bord</h1>
+                <div class="user-profile">
+                    <img src="{% static 'img/user.png' %}" alt="Profile" class="profile-pic">
+                    <span>Alpha THIAM</span>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- User Summary Card -->
+                <div class="card user-summary">
+                    <div class="card-header">
+                        <h3>Profil</h3>
+                        <a href="{% url 'profil' %}" class="edit-btn">Modifier</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-info">
+                            <img src="{% static 'img/user.png' %}" alt="Profile" class="profile-pic-large">
+                            <div class="user-details">
+                                <h4>Alpha THIAM</h4>
+                                <p><i class="fas fa-envelope"></i> alphathiam@gmail.com</p>
+                                <p><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</p>
+                                <p><i class="fas fa-tint"></i> Groupe sanguin: B+</p>
+                                <p><i class="fas fa-birthday-cake"></i> 45 ans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Status Cards -->
+                <div class="card status-card">
+                    <div class="card-header">
+                        <h3>Dernière plainte</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="status-item">
+                            <i class="fas fa-head-side-virus"></i>
+                            <div>
+                                <p>Il y a 09 heures</p>
+                                <h4>Migraines</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card status-card">
+                    <div class="card-header">
+                        <h3>Prochain médicament</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="status-item">
+                            <i class="fas fa-pills"></i>
+                            <div>
+                                <p>Dans 02 heures</p>
+                                <h4>Mixtard</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card status-card">
+                    <div class="card-header">
+                        <h3>Prochain Rendez-vous</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="status-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <div>
+                                <p>Le 15 juin 2025 à 08h</p>
+                                <h4>Diabétologie - Dr. FAYE</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glycemia Chart -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3>Prise glycémie</h3>
+                        <div class="last-value">
+                            <span>Dernière valeur: 1,28 g/dl</span>
+                            <span>Il y a 09 heures</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="glycemiaChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Glycemia History -->
+                <div class="card history-card">
+                    <div class="card-header">
+                        <h3>Historique glycémie</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Heure</th>
+                                    <th>Valeur (g/dl)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/2025</td>
+                                    <td>08:00</td>
+                                    <td>1,28</td>
+                                </tr>
+                                <!-- Additional rows would be dynamically generated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
+</body>
+</html>
